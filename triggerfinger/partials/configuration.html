@@ -1,0 +1,10 @@
+<div><h3>Configuration description</h3>
+Configuration – spring module responsible for reading configuration files. It consists of three classes and an interface:
+	<ul>
+		<li><a href="javadoc/configuration/com/sabre/sws/des/configuration/ConfigurationConfig.html" target="_blank">ConfigurationConfig</a> – Spring context configuration class; it’s only responsibility is to enable dependency injection in the module as well as possibility to reuse it in other Spring modules.</li>
+		<li><a href="javadoc/configuration/com/sabre/sws/des/configuration/ConfigurationDecoder.html" target="_blank">ConfigurationDecoder</a> – an interface defining one method, which requires a property key as an argument and returns a decoded value of the property.</li>
+		<li><a href="javadoc/configuration/com/sabre/sws/des/configuration/PasswordProtectedConfigurationDecoder.html" target="_blank">PasswordProtectedConfigurationDecoder</a> – implementation of ConfigurationDecoder; it uses Java’s Password Based Encryption with MD5 and DES. This algorithm is not the safest available, and it was used as a quick example of usage. Stronger encryption algorithms can be easily plugged in implementing the ConfigurationDecoder.</li>
+		<li><a href="javadoc/configuration/com/sabre/sws/des/configuration/DesConfiguration.html" target="_blank">DesConfiguration</a> – main configuration reading class. It offers both encrypted and plain text properties reading. The decoder is being plugged in as an injected dependency that implements the ConfigurationDecoder.</li>
+	</ul>
+
+</div>

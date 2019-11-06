@@ -1,0 +1,39 @@
+<div><h3>Soap descritpion</h3>
+<h4>Soap</h4> – module calling webservices using Spring-WS framework using WebServiceTemplate, which order is as follows:
+<ul>
+	<li>Run used callback’s doWithMessage() method</li>
+	<li>Run registered interceptors’ handleRequest() method</li>
+	<li>Send request to the server</li>
+	<li>Run registered interceptors’ handleResponse()  or handleFault() method</li>
+</ul>
+The most helpful class implemented here is <a href="javadoc/soap/com/sabre/sws/des/soap/common/GenericRequestWrapper.html" target="_blank">GenericRequestWrapper</a>, which uses two generic types: the request class and the response class. The extenders must provide implementation for five methods:
+<ul>
+	<li><a href="javadoc/soap/com/sabre/sws/des/soap/common/GenericRequestWrapper.html#request(com.sabre.sws.des.workflow.SharedContext)" target="_blank">request(SharedContext context)</a> – method should be implemented so it creates a request object, which will be marshaled to XML sent to the server</li>
+	<li><a href="javadoc/soap/com/sabre/sws/des/soap/common/GenericRequestWrapper.html#interceptors()" target="_blank">interceptors()</a> – method should return a list of ClientInterceptor implementations to be used in addition to the default once, which are FaultInteceptor, LoggingInterceptor and (depending on lastInFlow() method’s result) SessionPoolInterceptor. May return null, if additional interceptors are not required.</li>
+	<li><a href="javadoc/soap/com/sabre/sws/des/soap/common/GenericRequestWrapper.html#marshaller()" target="_blank">marshaller()</a> – method should return a marshaller which will be used for marshaling/unmarshalling the request/response sent to/received from the server</li>
+	<li><a href="javadoc/soap/com/sabre/sws/des/soap/common/GenericRequestWrapper.html#callback()" target="_blank">callback()</a> – HeaderCallback implementation should be provided in this method. Those provided in this project, will be described in a separate chapter</li>
+	<li><a href="javadoc/soap/com/sabre/sws/des/soap/common/GenericRequestWrapper.html#lastInFlow()" target="_blank">lastInFlow()</a> – should return whether the call is the last one in the flow</li>
+</ul>
+<h4>Callbacks</h4> – used to create headers in messages. They can be divided into two types: those that have to do with session and the other.
+<p>Session callbacks:
+<ul>
+<li><a href="javadoc/soap/com/sabre/sws/des/soap/callback/SessionCreateHeaderCallback.html" target="_blank">SessionCreateHeaderCallback</a> – responsible for creating header containing authentication data (credentials). Used in SessionCreateRQ call.</li>
+<li><a href="javadoc/soap/com/sabre/sws/des/soap/callback/SessionCloseHeaderCallback.html" target="_blank">SessionCloseHeaderCallback</a> – responsible for creating header which will be used in CloseSessionRQ call. It creates security header based on the Security object provided by calling a setter method.</li>
+<li><a href="javadoc/soap/com/sabre/sws/des/soap/callback/PingHeaderCallback.html" target="_blank">PingHeaderCallback</a> – responsible for creating header for a request that refreshes the session. Utilizes Security object provided by calling a setter method. Used in OTA_PingRQ call.</li>
+</ul>
+Other callbacks:
+<ul>
+<li><a href="javadoc/soap/com/sabre/sws/des/soap/callback/HeaderComposingCallback.html" target="_blank">HeaderComposingCallback</a> – responsible for retrieving security object from the session pool, using conversationId of the calling workflow.</li>
+</ul>
+</p>
+<h4>Interceptors</h4> – used to log messages, send faults to handle by error handler, and return sessions to the pool
+
+
+<h4>Session pooling</h4>
+<p>
+Session creation and closing can be expensive operation. Also, there is a session limit per user set on the server. In order to conserve time on client side and server resources, session pool has been introduced. The size of the pool is configurable in the soap.properties file in the Configuration module. The heart of this functionality is in the SessionPool class. It is responsible for making calls to open, destroy and refresh sessions that are being kept there. When the <a href="javadoc/soap/com/sabre/sws/des/soap/callback/HeaderComposingCallback.html" target="_blank">HeaderComposingCallback</a> requests a session, it recursively looks up the list of sessions to find a free one and returns it, and if it doesn’t find one, it calls the SessionCreateRQ to create it, only if the pool has space for it. Otherwise, it keeps the call on hold until it can get a free session. 
+When a workflow returns a session to the pool, the IgnoreTransactionRQ is being called, to make sure, the session on the server side is clean.
+Every ten minutes, the pool calls OTA_PingRQ on every session it keeps, to keep the sessions alive.
+The sessions are being closed, when the program exits, using an exit hook in the main configuration class (SoapApplicationConfiguration). The pool sends a SessionCloseRQ on every session, that it keeps.
+</p>
+</div>

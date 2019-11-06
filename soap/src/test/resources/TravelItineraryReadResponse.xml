@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap-env:Header>
+    <eb:MessageHeader eb:version="1.0" soap-env:mustUnderstand="1" xmlns:eb="http://www.ebxml.org/namespaces/messageHeader">
+      <eb:From>
+        <eb:PartyId eb:type="URI">webservices.sabre.com</eb:PartyId>
+      </eb:From>
+      <eb:To>
+        <eb:PartyId eb:type="URI">sample.url.of.sabre.client.com</eb:PartyId>
+      </eb:To>
+      <eb:ConversationId>20151007021859-nKPj8V4L</eb:ConversationId>
+      <eb:Service/>
+      <eb:Action>TravelItineraryReadRS</eb:Action>
+      <eb:MessageData>
+        <eb:MessageId>b06cc5af-fc99-4235-9f0f-b99948cdbaf8@61</eb:MessageId>
+        <eb:Timestamp>2015-10-07T12:19:15</eb:Timestamp>
+      </eb:MessageData>
+    </eb:MessageHeader>
+    <wsse:Security xmlns:wsse="http://schemas.xmlsoap.org/ws/2002/12/secext">
+      <wsse:BinarySecurityToken EncodingType="wsse:Base64Binary" valueType="String">Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTD!ICESMSLB\/CRT.LB!-3483199530634007647!813523!0</wsse:BinarySecurityToken>
+    </wsse:Security>
+  </soap-env:Header>
+  <soap-env:Body>
+    <TravelItineraryReadRS Version="3.6.0"
+      xmlns="http://services.sabre.com/res/tir/v3_6"
+      xmlns:or="http://services.sabre.com/res/or/v1_4" xmlns:stl="http://services.sabre.com/STL/v01">
+      <stl:ApplicationResults status="Complete">
+        <stl:Success timeStamp="2015-10-07T07:19:15.319-05:00"/>
+      </stl:ApplicationResults>
+      <TravelItinerary>
+        <CustomerInfo>
+          <ContactNumbers>
+            <ContactNumber LocationCode="DFW" Phone="817-555-1212-H-1.1" RPH="001"/>
+            <ContactNumber LocationCode="DFW" Phone="682-555-1212-O-1.1" RPH="002"/>
+          </ContactNumbers>
+          <PaymentInfo>
+            <Payment>
+              <Form RPH="004">
+                <Text>CASH</Text>
+              </Form>
+            </Payment>
+          </PaymentInfo>
+          <PersonName NameNumber="01.01" PassengerType="ADT" RPH="1" WithInfant="false">
+            <Email Comment="1.1">WEBSERVICES.SUPPORT@SABRE.COM</Email>
+            <GivenName>SWSVQBH</GivenName>
+            <Surname>TESTIYCR</Surname>
+          </PersonName>
+        </CustomerInfo>
+        <ItineraryInfo>
+          <ReservationItems>
+            <Item RPH="1">
+              <MiscSegment DayOfWeekInd="6" DepartureDateTime="02-27"
+                IsPast="false" NumberInParty="01" SegmentNumber="0001"
+                Status="HK" Type="OTH">
+                <OriginLocation LocationCode="DFW"/>
+                <Text>RETENTION SEGMENT</Text>
+                <Vendor Code="DL"/>
+              </MiscSegment>
+            </Item>
+          </ReservationItems>
+          <Ticketing RPH="01" TicketTimeLimit="T-A"/>
+        </ItineraryInfo>
+        <ItineraryRef AirExtras="false" ID="HBJBRB" InhibitCode="U"
+          PartitionID="AA" PrimeHostID="1S">
+          <Source AAA_PseudoCityCode="7TZA"
+            CreateDateTime="2015-10-07T07:19" CreationAgent="AW5"
+            HomePseudoCityCode="7TZA"
+            LastUpdateDateTime="2015-10-07T07:19" PseudoCityCode="7TZA"
+            ReceivedFrom="SWSTESTING" SequenceNumber="1"/>
+        </ItineraryRef>
+        <RemarkInfo>
+          <Remark RPH="001" Type="General">
+            <Text>TEST GENERAL REMARK 1</Text>
+          </Remark>
+          <Remark RPH="002" Type="Hidden Remark">
+            <Text>TEST HIDDEN REMARK</Text>
+          </Remark>
+          <Remark RPH="003" Type="Historical">
+            <Text>TEST HISTORICAL REMARK</Text>
+          </Remark>
+        </RemarkInfo>
+        <OpenReservationElements/>
+      </TravelItinerary>
+    </TravelItineraryReadRS>
+  </soap-env:Body>
+</soap-env:Envelope>

@@ -1,0 +1,210 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.sabre.api.sacs</groupId>
+		<artifactId>sabreapicodesamples</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>contract</artifactId>
+	<dependencies>
+		<dependency>
+			<groupId>org.jvnet.jaxb2_commons</groupId>
+			<artifactId>jaxb2-basics-runtime</artifactId>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.12.3</version>
+<!-- 				<configuration> -->
+<!--                 <plugins> -->
+<!--                     <plugin> -->
+<!--                         <groupId>org.jvnet.jaxb2_commons</groupId> -->
+<!--                         <artifactId>jaxb2-basics</artifactId> -->
+<!--                         <version>0.6.2</version> -->
+<!--                     </plugin> -->
+<!--                     <plugin> -->
+<!--                         <groupId>org.jvnet.jaxb2_commons</groupId> -->
+<!--                         <artifactId>jaxb2-basics-annotate</artifactId> -->
+<!--                         <version>0.6.2</version> -->
+<!--                     </plugin> -->
+<!--                     <plugin> -->
+<!--                         <groupId>org.jvnet.jaxb2_commons</groupId> -->
+<!--                         <artifactId>jaxb2-namespace-prefix</artifactId> -->
+<!--                         <version>1.1</version> -->
+<!--                     </plugin> -->
+<!--                 </plugins> -->
+<!-- 				</configuration> -->
+				<executions>
+					<execution>
+						<id>session-schemas</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaLanguage>XMLSCHEMA</schemaLanguage>
+							<forceRegenerate>true</forceRegenerate>
+							<!-- <schemaDirectory>${project.parent.basedir}/target/</schemaDirectory> -->
+							<generateDirectory>${project.build.directory}/generated-sources/xjc-1</generateDirectory>
+							<generatePackage>com.sabre.api.sacs.contract.session</generatePackage>
+							<schemaIncludes>
+								<include>**/wsdls/SessionCreateRQ/*RQRS.xsd</include>
+								<include>**/wsdls/SessionCloseRQ/*RQRS.xsd</include>
+							</schemaIncludes>
+							<schemaExcludes>
+								<exclude>**/common_schemas/wsse.xsd</exclude>
+								<exclude>**/common_schemas/msg-header-2_0.xsd</exclude>
+							</schemaExcludes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>ping-schemas</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaLanguage>XMLSCHEMA</schemaLanguage>
+							<forceRegenerate>true</forceRegenerate>
+							<!-- <schemaDirectory>${project.parent.basedir}/target/</schemaDirectory> -->
+							<generateDirectory>${project.build.directory}/generated-sources/xjc-1</generateDirectory>
+							<generatePackage>com.sabre.api.sacs.contract.session.ping</generatePackage>
+							<schemaIncludes>
+								<include>**/wsdls/OTA_PingRQ/*RQRS.xsd</include>
+							</schemaIncludes>
+							<schemaExcludes>
+								<exclude>**/common_schemas/wsse.xsd</exclude>
+								<exclude>**/common_schemas/wsse2.xsd</exclude>
+								<exclude>**/common_schemas/msg-header-2_0.xsd</exclude>
+							</schemaExcludes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>ignore-transaction-schemas</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaLanguage>XMLSCHEMA</schemaLanguage>
+							<forceRegenerate>true</forceRegenerate>
+							<!-- <schemaDirectory>${project.parent.basedir}/target/</schemaDirectory> -->
+							<generateDirectory>${project.build.directory}/generated-sources/xjc-1</generateDirectory>
+							<generatePackage>com.sabre.api.sacs.contract.transaction</generatePackage>
+							<schemaIncludes>
+								<include>**/wsdls/IgnoreTransactionLLSRQ/*RQRS.xsd</include>
+<!-- 								<include>**/common_schemas/STL_Header_v.1.2.0.xsd</include> -->
+							</schemaIncludes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>common-schemas</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaLanguage>XMLSCHEMA</schemaLanguage>
+							<forceRegenerate>true</forceRegenerate>
+							<!-- <schemaDirectory>${project.parent.basedir}/target/</schemaDirectory> -->
+							<generateDirectory>${project.build.directory}/generated-sources/xjc-1</generateDirectory>
+							<generatePackage>com.sabre.api.sacs.contract.soap</generatePackage>
+							<schemaIncludes>
+								<include>**/common_schemas/wsse.xsd</include>
+								<include>**/common_schemas/msg-header-2_0.xsd</include>
+							</schemaIncludes>
+							<extension>true</extension>
+							<args>
+								<arg>-Xequals</arg>
+								<arg>-XhashCode</arg>
+							</args>
+							<plugins>
+								<plugin>
+									<groupId>org.jvnet.jaxb2_commons</groupId>
+									<artifactId>jaxb2-basics</artifactId>
+									<version>0.9.4</version>
+								</plugin>
+							</plugins>
+						</configuration>
+					</execution>
+					<execution>
+						<id>travel-itinerary-schemas</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaLanguage>XMLSCHEMA</schemaLanguage>
+							<forceRegenerate>true</forceRegenerate>
+							<!-- <schemaDirectory>${project.parent.basedir}/target/</schemaDirectory> -->
+							<generateDirectory>${project.build.directory}/generated-sources/xjc-3</generateDirectory>
+							<generatePackage>com.sabre.api.sacs.contract.travelitinerary</generatePackage>
+							<schemaIncludes>
+								<include>**/wsdls/TravelItineraryReadRQ/*RQRS*.xsd</include>
+							</schemaIncludes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>passenger-details-schemas</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaLanguage>XMLSCHEMA</schemaLanguage>
+							<forceRegenerate>true</forceRegenerate>
+<!-- 							<bindingDirectory>**/custom-bindings</bindingDirectory> -->
+							<bindingIncludes>
+								<include>**/passenger-details-custom-binding.jxb</include>
+							</bindingIncludes>
+<!-- 							<schemaDirectory>${project.parent.basedir}/target/</schemaDirectory> -->
+							<generateDirectory>${project.build.directory}/generated-sources/xjc-4</generateDirectory>
+							<generatePackage>com.sabre.api.sacs.contract.passengerdetails</generatePackage>
+							<schemaIncludes>
+								<include>**/wsdls/PassengerDetailsRQ/*3.2.0RQRS.xsd</include>
+							</schemaIncludes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>bargain-finder-max-schemas</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<schemaLanguage>XMLSCHEMA</schemaLanguage>
+							<forceRegenerate>true</forceRegenerate>
+							<bindingIncludes>
+								<include>**/bargain-finder-max-custom-binding.jxb</include>
+							</bindingIncludes>
+							<generateDirectory>${project.build.directory}/generated-sources/xjc-5</generateDirectory>
+							<generatePackage>com.sabre.api.sacs.contract.bargainfindermax</generatePackage>
+							<schemaIncludes>
+								<include>**/wsdls/BargainFinderMaxRQ/*RQRS*.xsd</include>
+							</schemaIncludes>
+							<schemaExcludes>
+								<exclude>**/wsse.xsd</exclude>
+								<exclude>**/wsse2.xsd</exclude>
+								<exclude>**/msg-header-2_0.xsd</exclude>
+							</schemaExcludes>
+						</configuration>
+					</execution>
+					<execution>
+                        <id>enhanced-air-book-schemas</id>
+                        <goals><goal>generate</goal></goals>
+                        <configuration>
+                            <schemaLanguage>XMLSCHEMA</schemaLanguage>
+                            <forceRegenerate>true</forceRegenerate>
+                            <bindingIncludes>
+                                <include>**/enhanced-airbook-custom-binding.jxb</include>
+                            </bindingIncludes>
+                            <generateDirectory>${project.build.directory}/generated-sources/xjc-6</generateDirectory>
+                            <generatePackage>com.sabre.api.sacs.contract.enhancedairbook</generatePackage>
+                            <schemaIncludes>
+                                <include>**/wsdls/EnhancedAirBookRQ/*3.2.0RQRS.xsd</include>
+                            </schemaIncludes>
+                        </configuration>
+                    </execution>
+					
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

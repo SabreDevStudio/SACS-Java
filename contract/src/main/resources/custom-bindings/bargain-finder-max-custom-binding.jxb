@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jaxb:bindings version="2.0" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+               xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+               xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+    <jaxb:bindings schemaLocation="../wsdls/BargainFinderMaxRQ/BargainFinderMaxRQ_v1-9-2.xsd" node="/xs:schema">
+        <jaxb:bindings node="//xs:schema/xs:element[@name='OTA_AirLowFareSearchRQ']/xs:complexType/xs:sequence/xs:element[@name='TPA_Extensions']/xs:complexType/xs:sequence/xs:element[@name='AlternatePCC']/xs:complexType/xs:sequence/xs:element[@name='TravelPreferences']/xs:complexType/xs:sequence/xs:element[@name='TPA_Extensions']/xs:complexType">
+            <jaxb:class name="TPAExtensions1"/>
+        </jaxb:bindings>
+    </jaxb:bindings>
+</jaxb:bindings>

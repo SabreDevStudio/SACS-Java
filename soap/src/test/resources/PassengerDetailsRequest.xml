@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header>
+    <ns2:MessageHeader
+      xmlns:ns2="http://www.ebxml.org/namespaces/messageHeader"
+      xmlns:ns3="http://www.w3.org/1999/xlink"
+      xmlns:ns4="http://www.w3.org/2000/09/xmldsig#"
+      xmlns:ns6="http://schemas.xmlsoap.org/ws/2002/12/secext" xmlns:ns7="http://www.opentravel.org/OTA/2002/11">
+      <ns2:From>
+        <ns2:PartyId>sample.url.of.sabre.client.com</ns2:PartyId>
+      </ns2:From>
+      <ns2:To>
+        <ns2:PartyId>webservices.sabre.com</ns2:PartyId>
+      </ns2:To>
+      <ns2:ConversationId>20150824104417-su4AS3wH</ns2:ConversationId>
+      <ns2:Service/>
+      <ns2:Action>PassengerDetailsRQ</ns2:Action>
+    </ns2:MessageHeader>
+    <ns6:Security
+      xmlns:ns2="http://www.ebxml.org/namespaces/messageHeader"
+      xmlns:ns3="http://www.w3.org/1999/xlink"
+      xmlns:ns4="http://www.w3.org/2000/09/xmldsig#"
+      xmlns:ns6="http://schemas.xmlsoap.org/ws/2002/12/secext" xmlns:ns7="http://www.opentravel.org/OTA/2002/11">
+      <ns6:BinarySecurityToken>Shared/IDL:IceSess\/SessMgr:1\.0.IDL/Common/!ICESMS\/ACPCRTD!ICESMSLB\/CRT.LB!-3498823531809268445!1804115!0</ns6:BinarySecurityToken>
+    </ns6:Security>
+  </SOAP-ENV:Header>
+  <SOAP-ENV:Body>
+    <ns2:PassengerDetailsRQ HaltOnError="true" IgnoreOnError="false"
+      version="3.1.1" xmlns:ns2="http://services.sabre.com/sp/pd/v3_1" xmlns:ns3="http://services.sabre.com/STL_Payload/v02_01">
+      <ns2:MiscSegmentSellRQ>
+        <ns2:MiscSegment DepartureDateTime="2015-02-27"
+          NumberInParty="1" Status="HK" Type="OTH">
+          <ns2:OriginLocation LocationCode="DFW"/>
+          <ns2:Text>RETENTION SEGMENT</ns2:Text>
+          <ns2:VendorPrefs>
+            <ns2:Airline Code="DL"/>
+          </ns2:VendorPrefs>
+        </ns2:MiscSegment>
+      </ns2:MiscSegmentSellRQ>
+      <ns2:PostProcessing RedisplayReservation="true">
+        <ns2:EndTransactionRQ>
+          <ns2:EndTransaction Ind="true"/>
+          <ns2:Source ReceivedFrom="SWSTesting"/>
+        </ns2:EndTransactionRQ>
+      </ns2:PostProcessing>
+      <ns2:SpecialReqDetails>
+        <ns2:AddRemarkRQ>
+          <ns2:RemarkInfo>
+            <ns2:FOP_Remark Type="CASH"/>
+            <ns2:Remark Type="General">
+              <ns2:Text>TEST GENERAL REMARK 1</ns2:Text>
+            </ns2:Remark>
+            <ns2:Remark Type="Hidden">
+              <ns2:Text>TEST HIDDEN REMARK</ns2:Text>
+            </ns2:Remark>
+            <ns2:Remark Type="Historical">
+              <ns2:Text>TEST HISTORICAL REMARK</ns2:Text>
+            </ns2:Remark>
+          </ns2:RemarkInfo>
+        </ns2:AddRemarkRQ>
+      </ns2:SpecialReqDetails>
+      <ns2:TravelItineraryAddInfoRQ>
+        <ns2:AgencyInfo>
+          <ns2:Ticketing TicketType="7T-A"/>
+        </ns2:AgencyInfo>
+        <ns2:CustomerInfo>
+          <ns2:ContactNumbers>
+            <ns2:ContactNumber LocationCode="DFW" NameNumber="1.1"
+              Phone="817-555-1212" PhoneUseType="H"/>
+            <ns2:ContactNumber LocationCode="DFW" NameNumber="1.1"
+              Phone="682-555-1212" PhoneUseType="O"/>
+          </ns2:ContactNumbers>
+          <ns2:Email Address="webservices.support@sabre.com" NameNumber="1.1"/>
+          <ns2:PersonName NameNumber="1.1">
+            <ns2:GivenName>SWSnRnN</ns2:GivenName>
+            <ns2:Surname>TESTBaPB</ns2:Surname>
+          </ns2:PersonName>
+        </ns2:CustomerInfo>
+      </ns2:TravelItineraryAddInfoRQ>
+    </ns2:PassengerDetailsRQ>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

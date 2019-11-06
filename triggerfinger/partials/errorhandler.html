@@ -1,0 +1,7 @@
+<div><h3>Error Handler</h3>
+A module employing the Visitor pattern used to handle faulty workflows. It consists of two classes:
+<ul>
+	<li>ErrorHandlingVisitor - Class implementing the Visitor pattern. Implemented method is for handling faulty workflows. It simply re-runs it.</li>
+	<li>ErrorHandlingSchedule - Class which periodically runs the ErrorHandlingVisitor handling on all the failures that are being added to the system failures lists. It checks, whether the limit of re-runs has not been exceeded and re-runs the flow.</li>
+</ul>
+</div>

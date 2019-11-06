@@ -1,0 +1,8 @@
+<div><h3>Workflow description</h3>
+Workflow – a module implementing two design patterns – Workflow and Visitor. The former is used in the soap module for batching single calls to stateful flows which can be used to implement certain use cases. The state is being shared between activities using the SharedContext class instance.  The latter is being used for error handling.
+	<ul>
+		<li>SharedContext – contains a map of results indexed with a name of the call, indicates whether there was a fault during the workflow execution and also defines how many times should the workflow be rerun in case of a failure; implements the Visitable interface, so it can be visited by the error handling visitor.</li>
+		<li>Workflow – class used for running use cases.</li>
+		<li>Visitor, Visitable – interfaces of the Visitor pattern used in error handling.</li>
+	</ul>
+</div>

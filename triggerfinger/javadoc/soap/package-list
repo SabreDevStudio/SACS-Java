@@ -1,0 +1,9 @@
+com.sabre.sws.des.soap
+com.sabre.sws.des.soap.callback
+com.sabre.sws.des.soap.common
+com.sabre.sws.des.soap.interceptor
+com.sabre.sws.des.soap.orchestratedflow
+com.sabre.sws.des.soap.passengerdetails
+com.sabre.sws.des.soap.pool
+com.sabre.sws.des.soap.session
+com.sabre.sws.des.soap.travelitinerary

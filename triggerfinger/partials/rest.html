@@ -1,0 +1,14 @@
+<div><h3>REST description</h3>
+<p>A module responsible for making calls to the Sabre REST webservices. It also utilizes the Workflow module and reads settings from the Configuration module.</p>
+<p>
+The domain model used for REST calls is being created in 3 different ways here:
+<ul>
+	<li>Manually - based on the example JSON result from Sabre Developer Studio.</li>
+	<li>http://www.jsonschema2pojo.org/ - using the web generator - pasting the example JSON result, generating jar with source code and copying classes to the project.</li>
+	<li>Maven plugin from http://www.jsonschema2pojo.org/ - generates source code directly in the project.</li>
+</ul>
+</p>
+<p>
+The authentication takes place when any unauthenticated call attempts to take place. The TokenHolder class responsible for providing the authentication string checks, whether the token has been created and is not outdated. In any of those two cases, it runs the AuthenticationCall's doCall method, which reads credentials using Configuration module, encodes it in the way, that is described on Sabre Developer Studio and (re)sets the token in the TokenHolder class.
+</p>
+</div>
